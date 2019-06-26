@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
     protected AudioSource audio_;
     public Transform explosionFX_;
 
+    // 子弹发射计时器
+    float shoot_timer_ = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,8 +26,13 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0)) {
-            Instantiate(rocket_, this.transform_.position, this.transform_.rotation);
-            audio_.PlayOneShot(shoot_clip_);
+            shoot_timer_ -= Time.deltaTime;
+            if (shoot_timer_ <= 0)
+            {
+                shoot_timer_ = 0.1f;
+                Instantiate(rocket_, this.transform_.position, this.transform_.rotation);
+                audio_.PlayOneShot(shoot_clip_);
+            }
         }
         // 水平移动距离
         float moveh = 0;
