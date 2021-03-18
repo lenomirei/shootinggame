@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     protected AudioSource audio_;
     public Transform explosionFX_;
 
+    public Vector3 target_position_;
+
     // 子弹发射计时器
     float shoot_timer_ = 0;
 
@@ -20,6 +22,7 @@ public class Player : MonoBehaviour
     {
         audio_ = this.GetComponent<AudioSource>();
         transform_ = this.transform;
+        target_position_ = this.transform.position;
     }
 
     // Update is called once per frame
@@ -63,6 +66,13 @@ public class Player : MonoBehaviour
                 Instantiate(explosionFX_, transform_.position, transform_.rotation);
                 Destroy(this.gameObject);
             }
+        }
+    }
+
+    void Moveto() {
+        if (Input.GetMouseButton(0))
+        {
+            Vector3 ms = Input.mousePosition;
         }
     }
 }
