@@ -61,7 +61,6 @@ public class GameManager : MonoBehaviour
         text_life_.text = string.Format("生命, {0}", life);
         if (life <= 0) {
             canvas_game_over_.gameObject.SetActive(true);
-
         }
     }
 
